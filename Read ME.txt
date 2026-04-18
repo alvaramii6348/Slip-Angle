@@ -1,0 +1,11 @@
+Controls:
+Up arrow key - Accellerate
+left arrow key - turn left
+right arrow key - turn right
+down arrow key - brake/reverse
+
+You can only turn when moving
+
+Isaiah Alvarado-Ramirez
+Solo Dolo Productions
+All art is created by me, Isaiah Alvarado-Ramirez
