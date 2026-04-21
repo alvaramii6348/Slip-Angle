@@ -37,7 +37,8 @@
   "resources":[
     {"id":{"name":"obj_car","path":"objects/obj_car/obj_car.yy",},},
     {"id":{"name":"obj_cone","path":"objects/obj_cone/obj_cone.yy",},},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"rm_level1","path":"rooms/rm_level1/rm_level1.yy",},},
+    {"id":{"name":"rm_tutorial","path":"rooms/rm_tutorial/rm_tutorial.yy",},},
     {"id":{"name":"spr_car","path":"sprites/spr_car/spr_car.yy",},},
     {"id":{"name":"spr_concrete","path":"sprites/spr_concrete/spr_concrete.yy",},},
     {"id":{"name":"spr_cone","path":"sprites/spr_cone/spr_cone.yy",},},
@@ -46,7 +47,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rm_tutorial","path":"rooms/rm_tutorial/rm_tutorial.yy",},},
+    {"roomId":{"name":"rm_level1","path":"rooms/rm_level1/rm_level1.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

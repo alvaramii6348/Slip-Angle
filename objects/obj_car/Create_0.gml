@@ -13,6 +13,6 @@ direction = 90;
 motion_dir = direction;
 
 // how much grip the tires have
-grip = 0.05; 
+grip = 0.03; 
 // lower grip = more drift
 // higher grip = tighter handling
