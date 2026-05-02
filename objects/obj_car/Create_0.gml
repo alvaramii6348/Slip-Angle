@@ -1,9 +1,9 @@
 //ebrake
 ebrake_grip = 0.02;
 normal_grip = 0.06;
-ebrake_turn_boost = 1.5;
+ebrake_turn_boost = 1.6;
 
-spinout_angle = 75;
+spinout_angle = 85;
 spinout_timer = 0;
 
 

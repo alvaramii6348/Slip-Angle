@@ -1,7 +1,7 @@
-var throttle = keyboard_check(vk_up);
-var brake = keyboard_check(vk_down);
-var left = keyboard_check(vk_left);
-var right = keyboard_check(vk_right);
+var throttle = keyboard_check(ord("W"));
+var brake = keyboard_check(ord("S"));
+var left = keyboard_check(ord("A"));
+var right = keyboard_check(ord("D"));
 var ebrake = keyboard_check(vk_space);
 
 /// accelerate forward
@@ -9,9 +9,22 @@ if (throttle) {
     move_speed += acceleration;
 }
 
-/// brake / reverse
+/// brake first, then reverse only when nearly stopped
 if (brake) {
-    move_speed -= brake_power;
+    if (move_speed > 0) {
+        move_speed -= brake_power;
+        
+        if (move_speed < 0) {
+            move_speed = 0;
+        }
+    }
+    else {
+        move_speed -= brake_power * 0.5;
+    }
+}
+
+if (ebrake && abs(move_speed) > 3 && (left || right)) {
+    move_speed *= 0.985;
 }
 
 /// natural friction
@@ -29,21 +42,32 @@ if (!throttle && !brake) {
 /// clamp forward and reverse speed
 move_speed = clamp(move_speed, -reverse_speed, max_speed);
 
+if (abs(move_speed) < 0.03) {
+    move_speed = 0;
+}
+
+if (move_speed == 0) {
+    motion_dir = direction;
+}
+
 /// steering
 if (abs(move_speed) > 0.01 && spinout_timer <= 0) {
+    var steer_input = 0;
+
+    if (left) steer_input += 1;
+    if (right) steer_input -= 1;
+
     var steer_amount = turn_speed * (abs(move_speed) / max_speed);
 
-    if (ebrake && abs(move_speed) > 3 && (left || right)) {
+    if (ebrake && abs(move_speed) > 3 && steer_input != 0) {
         steer_amount *= ebrake_turn_boost;
     }
 
-    // invert steering while reversing
     if (move_speed < 0) {
         steer_amount = -steer_amount;
     }
 
-    if (right) direction -= steer_amount;
-    if (left) direction += steer_amount;
+    direction += steer_input * steer_amount;
 }
 
 /// drift movement
@@ -58,22 +82,23 @@ motion_dir += angle_difference(direction, motion_dir) * current_grip;
 // tiremark
 var drift_amount = angle_difference(direction, motion_dir);
 
-
-//spinout
+/*
+// spinout
 if (abs(drift_amount) > spinout_angle && abs(move_speed) > 4 && spinout_timer <= 0) {
     spinout_timer = 35;
     move_speed *= 0.45;
-    motion_dir = direction;
 }
 
 if (spinout_timer > 0) {
     spinout_timer -= 1;
 
-    move_speed *= 0.96;
+    // slow car down while spinning out
+    move_speed *= 0.94;
 
-    // slowly stabilize car after spinout
-    motion_dir += angle_difference(direction, motion_dir) * 0.25;
+    // reduce slide gradually, but do not snap movement direction
+    motion_dir -= angle_difference(direction, motion_dir) * 0.08;
 }
+*/
 
 if (abs(drift_amount) > 14 && abs(move_speed) > 2.5) {
     var rear_dist = 20;
