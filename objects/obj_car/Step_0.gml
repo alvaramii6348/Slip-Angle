@@ -82,23 +82,6 @@ motion_dir += angle_difference(direction, motion_dir) * current_grip;
 // tiremark
 var drift_amount = angle_difference(direction, motion_dir);
 
-/*
-// spinout
-if (abs(drift_amount) > spinout_angle && abs(move_speed) > 4 && spinout_timer <= 0) {
-    spinout_timer = 35;
-    move_speed *= 0.45;
-}
-
-if (spinout_timer > 0) {
-    spinout_timer -= 1;
-
-    // slow car down while spinning out
-    move_speed *= 0.94;
-
-    // reduce slide gradually, but do not snap movement direction
-    motion_dir -= angle_difference(direction, motion_dir) * 0.08;
-}
-*/
 
 if (abs(drift_amount) > 14 && abs(move_speed) > 2.5) {
     var rear_dist = 20;

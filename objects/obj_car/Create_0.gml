@@ -8,7 +8,7 @@ spinout_timer = 0;
 
 
 move_speed = 0;
-max_speed = 8;
+max_speed = 7.5;
 reverse_speed = 3;
 acceleration = 0.25;
 friction = 0.06;

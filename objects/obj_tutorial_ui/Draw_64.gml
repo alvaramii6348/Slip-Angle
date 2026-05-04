@@ -5,13 +5,13 @@ var gui_h = display_get_gui_height();
 
 var key_size = 60;
 var gap = 8;
-var margin = 120;
+var margin = 70;
 
 var space_w = key_size * 3 + gap * 2;
 var space_h = 42;
 
-// top-right position
-var start_x = gui_w - space_w - margin;
+// top-left position
+var start_x = margin;
 var start_y = 70;
 
 // input checks
